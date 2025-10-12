@@ -6,6 +6,8 @@ import Login from "../Pages/Authtincation/Login/Login";
 
 import Signup from "../Pages/Authtincation/Signup/Signup";
 import AddBook from "../Pages/Dashboard/Page/AddBook/AddBook";
+import PrivetRouts from "./PrivetRoutes";
+import BorrowBook from "../Pages/Dashboard/Page/BorrowBook/BorrowBook";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -28,11 +30,15 @@ export const router = createBrowserRouter([
 
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivetRouts><Dashboard></Dashboard></PrivetRouts>,
     children:[
         {
             path:'addbook',
             element:<AddBook></AddBook>
+        },
+        {
+          path:'borrowbook',
+          element:<BorrowBook></BorrowBook>
         }
     ]
   },

@@ -1,7 +1,26 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Dashboard() {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const {
+    data: currentUser,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["currentUser", user?.email],
+    queryFn: async () => {
+      // if (!user?.email) return null;
+      const res = await axiosSecure.get(`/users/${user.email}`);
+      return res.data;
+    },
+    enabled: !!user?.email, // Only run query if user email exists
+  });
+
   return (
     <div>
       <div>
@@ -53,9 +72,16 @@ export default function Dashboard() {
               <li>
                 <NavLink to="/">Home</NavLink>
               </li>
-              <li>
-                <NavLink to="addbook">Add Book</NavLink>
-              </li>
+              {currentUser?.role === "admin" ? (
+                <li>
+                  <NavLink to="addbook">Add Book</NavLink>
+                  <NavLink to="borrowbook">Borrow Book</NavLink>
+                </li>
+              ) : (
+                <li>
+                  <NavLink>User profile</NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>
