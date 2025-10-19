@@ -79,7 +79,7 @@ export default function Dashboard() {
                 </li>
               ) : (
                 <li>
-                  <NavLink>User profile</NavLink>
+                  <NavLink to='myborrowedbook'>Borrowed Book</NavLink>
                 </li>
               )}
             </ul>

@@ -8,6 +8,7 @@ import Signup from "../Pages/Authtincation/Signup/Signup";
 import AddBook from "../Pages/Dashboard/Page/AddBook/AddBook";
 import PrivetRouts from "./PrivetRoutes";
 import BorrowBook from "../Pages/Dashboard/Page/BorrowBook/BorrowBook";
+import MyBorrowedBooks from "../Pages/Dashboard/User/MyBorrowedBook/MyborrowedBooks";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -30,16 +31,24 @@ export const router = createBrowserRouter([
 
   {
     path: "dashboard",
-    element: <PrivetRouts><Dashboard></Dashboard></PrivetRouts>,
-    children:[
-        {
-            path:'addbook',
-            element:<AddBook></AddBook>
-        },
-        {
-          path:'borrowbook',
-          element:<BorrowBook></BorrowBook>
-        }
-    ]
+    element: (
+      <PrivetRouts>
+        <Dashboard></Dashboard>
+      </PrivetRouts>
+    ),
+    children: [
+      {
+        path: "addbook",
+        element: <AddBook></AddBook>,
+      },
+      {
+        path: "borrowbook",
+        element: <BorrowBook></BorrowBook>,
+      },
+      {
+        path:'myborrowedbook',
+        element:<MyBorrowedBooks></MyBorrowedBooks>
+      },
+    ],
   },
 ]);
