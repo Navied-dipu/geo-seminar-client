@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../hooks/useAxiosSecure/useAxiosSecure";
+
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export default function Home() {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const [search, setSearch] = useState("");
   // React Query fetch
   const {
@@ -14,7 +15,7 @@ export default function Home() {
   } = useQuery({
     queryKey: ["books"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/books");
+      const res = await axiosPublic.get("/books");
       return res.data;
     },
   });

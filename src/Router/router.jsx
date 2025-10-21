@@ -9,6 +9,7 @@ import AddBook from "../Pages/Dashboard/Page/AddBook/AddBook";
 import PrivetRouts from "./PrivetRoutes";
 import BorrowBook from "../Pages/Dashboard/Page/BorrowBook/BorrowBook";
 import MyBorrowedBooks from "../Pages/Dashboard/User/MyBorrowedBook/MyborrowedBooks";
+import ReturnBook from "../Pages/Dashboard/Page/ReturnBook/ReturnBook";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
         path:'myborrowedbook',
         element:<MyBorrowedBooks></MyBorrowedBooks>
       },
+      {
+        path:'returnbook',
+        element:<ReturnBook></ReturnBook>
+      }
     ],
   },
 ]);

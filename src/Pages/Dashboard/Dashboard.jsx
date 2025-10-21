@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
@@ -6,21 +6,25 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function Dashboard() {
   const { user } = useAuth();
+ const [userEmail, setUserEmail] = useState("");
+ console.log(userEmail)
   const axiosSecure = useAxiosSecure();
+  useEffect(()=>{
+    setUserEmail(user?.email)
+  },[user])
   const {
     data: currentUser,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["currentUser", user?.email],
+    queryKey: ["currentUser", userEmail],
     queryFn: async () => {
       // if (!user?.email) return null;
-      const res = await axiosSecure.get(`/users/${user.email}`);
+      const res = await axiosSecure.get(`/users?email=${userEmail}`);
       return res.data;
     },
-    enabled: !!user?.email, // Only run query if user email exists
+    enabled: !!userEmail, // Only run query if user email exists
   });
-
   return (
     <div>
       <div>
@@ -76,6 +80,7 @@ export default function Dashboard() {
                 <li>
                   <NavLink to="addbook">Add Book</NavLink>
                   <NavLink to="borrowbook">Borrow Book</NavLink>
+                  <NavLink to="returnbook">Return Book</NavLink>
                 </li>
               ) : (
                 <li>

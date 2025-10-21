@@ -13,7 +13,7 @@ export default function Navbar() {
 
   const links = (
     <>
-      <li>
+     <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -23,7 +23,7 @@ export default function Navbar() {
           Home
         </NavLink>
       </li>
-      <li>
+     {user && <li>
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
@@ -32,7 +32,7 @@ export default function Navbar() {
         >
           Dashboard
         </NavLink>
-      </li>
+      </li>}
     </>
   );
 
