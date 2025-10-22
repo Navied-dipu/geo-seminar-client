@@ -81,6 +81,7 @@ export default function Dashboard() {
                   <NavLink to="addbook">Add Book</NavLink>
                   <NavLink to="borrowbook">Borrow Book</NavLink>
                   <NavLink to="returnbook">Return Book</NavLink>
+                  <NavLink to="managebook">Manage Book</NavLink>
                 </li>
               ) : (
                 <li>

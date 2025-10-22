@@ -10,6 +10,8 @@ import PrivetRouts from "./PrivetRoutes";
 import BorrowBook from "../Pages/Dashboard/Page/BorrowBook/BorrowBook";
 import MyBorrowedBooks from "../Pages/Dashboard/User/MyBorrowedBook/MyborrowedBooks";
 import ReturnBook from "../Pages/Dashboard/Page/ReturnBook/ReturnBook";
+import ManageBook from "../Pages/Dashboard/Page/ManageBook/ManageBook";
+import EditBook from "../Pages/Dashboard/Page/AddBook/EditBook";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -53,6 +55,16 @@ export const router = createBrowserRouter([
       {
         path:'returnbook',
         element:<ReturnBook></ReturnBook>
+      },
+      {
+        path:'managebook',
+        element:<ManageBook></ManageBook>
+      },
+      {
+        path:'editbook/:id',
+        element:<EditBook></EditBook>,
+        // loader:({params}) => fetch(`http://localhost:5000/books/${params.id}`)
+
       }
     ],
   },
