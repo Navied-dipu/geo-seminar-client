@@ -141,7 +141,7 @@ export default function ReturnBook() {
       <div className="grid grid-cols-1 gap-4 md:hidden">
         {filtered.length ? (
           filtered.map((b) => (
-            <div key={b._id} className="bg-white p-4 rounded-lg shadow-md">
+            <div key={b._id} className=" p-4 rounded-lg shadow-md">
               <h3 className="font-bold text-lg text-indigo-700">
                 {b.bookName}
               </h3>

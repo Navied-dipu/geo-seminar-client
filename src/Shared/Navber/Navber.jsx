@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 
 export default function Navbar() {
   const { user, logOut } = useAuth();
-
+const isUser=true
   const handleLogout = () => {
     logOut()
       .then(() => console.log("User logged out"))
@@ -23,7 +23,7 @@ export default function Navbar() {
           Home
         </NavLink>
       </li>
-     {user && <li>
+     {isUser && <li>
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
