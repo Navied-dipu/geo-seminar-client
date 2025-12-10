@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import useAxiosPublic from "../hooks/useAxiosPublic";
+// import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosSecure from "../hooks/useAxiosSecure/useAxiosSecure";
 
 export default function Home() {
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [search, setSearch] = useState("");
   // React Query fetch
   const {
@@ -15,7 +17,8 @@ export default function Home() {
   } = useQuery({
     queryKey: ["books"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/books");
+      const res = await axiosSecure.get("/books");
+     
       return res.data;
     },
   });
@@ -35,6 +38,7 @@ export default function Home() {
       </div>
     );
   }
+console.log(books)
   const displayedBooks =
     search.trim() === ""
       ? books // show all by default
